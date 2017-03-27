@@ -1,0 +1,22 @@
+﻿
+
+<div ng-controller="EditOrdersController as vm">
+    <div class="row">
+
+
+        <div class="col-xs-12">
+            <ng-form>
+                <div class="form-group col-xs-6">
+                    <label for="customers">Customers</label>
+
+                    <select class="form-control" id="customers" ng-model="vm.selectedCustomer">
+                        <option ng-repeat="customer in vm.customers" ng-value="customer.id">
+                            {{customer.name}}
+                        </option>
+                    </select>
+                </div>
+            </ng-form>
+        </div>
+
+    </div>
+</div>
