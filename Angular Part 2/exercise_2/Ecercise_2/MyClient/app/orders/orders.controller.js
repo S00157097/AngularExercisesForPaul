@@ -6,7 +6,7 @@
             function (appSettings, $resource) {
 
                 this.Orders = $resource(appSettings.serverPath + '/api/orders');
-                
+
                 this.OrdersWithProducts = $resource(appSettings.serverPath + '/api/orders/getOrdersWithProducts/Id/:id');
             }
         ])
@@ -14,7 +14,9 @@
         .service('customerResources', ['appSettings', '$resource',
             function (appSettings, $resource) {
 
-                this.Customers = $resource(appSettings.serverPath + '/api/customers');
+                this.Customers = $resource(appSettings.serverPath + '/api/customers/:id', null, {
+                    'update': { method: 'PUT' }
+                });
 
             }
         ])
@@ -35,6 +37,11 @@
 
                 vm.changeCustomer = () => {
                     vm.customer = vm.customers[vm.selectedCustomer];
+                };
+
+                vm.submit = () => {
+                    customerResources.Customers.update({ id: vm.customers[vm.selectedCustomer].id }, vm.customers[vm.selectedCustomer]);
+                    alert(`Information about ${vm.customers[vm.selectedCustomer].name} was saved`);
                 };
             }
         ])
@@ -62,7 +69,7 @@
 
                 vm.showOrderLines = function (orderId) {
                     vm.lines = [];
-                
+
                     vm.orders
                         .map(order => {
                             if (order.id == orderId) {
