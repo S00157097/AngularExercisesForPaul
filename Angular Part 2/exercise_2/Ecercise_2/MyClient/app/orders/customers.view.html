@@ -9,11 +9,28 @@
                 <div class="form-group col-xs-6">
                     <label for="customers">Customers</label>
 
-                    <select class="form-control" id="customers" ng-model="vm.selectedCustomer">
-                        <option ng-repeat="customer in vm.customers" ng-value="customer.id">
+                    <select ng-change="vm.changeCustomer()" class="form-control" id="customers" ng-model="vm.selectedCustomer">
+                        <option ng-repeat="customer in vm.customers" ng-value="$index">
                             {{customer.name}}
                         </option>
                     </select>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" ng-model="vm.customer.name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input class="form-control" type="text" ng-model="vm.customer.address" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Credit Rating</label>
+                        <input class="form-control" type="number" ng-model="vm.customer.creditRating" />
+                    </div>
                 </div>
             </ng-form>
         </div>

@@ -24,12 +24,18 @@
                 let vm = this;
 
                 vm.customers = [];
-                vm.selectedCustomer = '';
+                vm.selectedCustomer = 0;
+                vm.customer = undefined;
 
                 customerResources.Customers.query((data) => {
                     vm.customers = data;
-                    vm.selectedCustomer = vm.customers[0].id;
+                    vm.selectedCustomer = 0;
+                    vm.customer = vm.customers[0];
                 });
+
+                vm.changeCustomer = () => {
+                    vm.customer = vm.customers[vm.selectedCustomer];
+                };
             }
         ])
 
