@@ -22,18 +22,18 @@ namespace Ecercise_2.Controllers
         // GET: api/Orders
         public IQueryable<Order> GetOrders()
         {
-            return db.Orders;
-                //.Include("Customer")
-                //.Include("OrderLines");
+            return db.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderLines);
         }
 
         [Route("getOrdersWithProducts/Id/{id:int}")]
         public IQueryable<OrderLine> GetOrdersWithProducts(int id)
         {
             return db.OrderLines.Include(orderLine => orderLine.Product)
+                    .Include(orderLine => orderLine.Order)
+                    .Include(orderLine => orderLine.Order.Customer)
                     .Where(line => line.Order.Id == id);
-                //.Include(orderLine => orderLine.Order)
-                //.Include(orderLine => orderLine.Order.Customer);
         }
 
         // GET: api/Orders/5

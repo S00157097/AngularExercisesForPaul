@@ -40,4 +40,23 @@
         </div>
 
     </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+
+        <div class="col-xs-12">
+            <select ng-change="vm.changeOrder()" class="form-control" id="customers" ng-model="vm.selectedOrder">
+                <option ng-repeat="order in vm.orders" ng-value="$index">
+                    {{order.id}}
+                </option>
+            </select>
+
+            <table class="table">
+                <thead>
+
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>

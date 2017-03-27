@@ -26,17 +26,25 @@
                 let vm = this;
 
                 vm.customers = [];
+                vm.orders = [];
                 vm.selectedCustomer = 0;
+                vm.selectedOrder = 0;
                 vm.customer = undefined;
 
                 customerResources.Customers.query((data) => {
                     vm.customers = data;
                     vm.selectedCustomer = 0;
                     vm.customer = vm.customers[0];
+                    vm.orders = vm.customer.orders;
                 });
 
                 vm.changeCustomer = () => {
                     vm.customer = vm.customers[vm.selectedCustomer];
+                    vm.orders = vm.customer.orders;
+                };
+
+                vm.changeOrder = () => {
+
                 };
 
                 vm.submit = () => {
