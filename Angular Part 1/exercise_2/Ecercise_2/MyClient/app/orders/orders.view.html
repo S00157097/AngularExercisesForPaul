@@ -1,0 +1,55 @@
+﻿
+
+<div ng-controller="OrderController as vm">
+    <div class="row">
+
+
+        <div class="col-xs-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Order Date</th>
+                        <th>Entered By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in vm.orders">
+                        <td ng-bind="order.id"></td>
+                        <td ng-bind="order.customer.name"></td>
+                        <td ng-bind="order.orderDate | date"></td>
+                        <td ng-bind="order.enteredBy"></td>
+                        <td>
+                            <button type="button" class="btn btn-default" ng-click="vm.getOrdersWithProducts(order.id)">
+                                Show Order Lines
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-xs-6">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product ID</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="line in vm.productOrderLines">
+                        <td ng-bind="line.id"></td>
+                        <td ng-bind="line.productId"></td>
+                        <td ng-bind="line.product.description"></td>
+                        <td ng-bind="line.quantity"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
